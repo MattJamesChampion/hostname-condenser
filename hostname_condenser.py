@@ -9,6 +9,9 @@ An example is if the hostname was "egg": this could also be represented as
 "e.gg", which would form part of a larger URI.
 """
 
+class HostnameCondenserError(Exception):
+    """The generic exception used by the hostname_condenser module."""
+
 
 def condense_hostname(hostname, top_level_domains=None):
     """Takes a hostname and an optional list of top-level domains and generates
