@@ -22,3 +22,12 @@ def condense_hostname(hostname, top_level_domains=None):
     Returns:
         A list of valid hostname/TLD combinations.
     """
+    if top_level_domains is None:
+        pass # Get the default set of TLDs
+
+    matching_top_level_domains = [top_level_domain for top_level_domain in
+                                  top_level_domains if
+                                  hostname.lower().endswith(top_level_domain)]
+
+    return [hostname.replace(tld, "") + "." + tld
+            for tld in matching_top_level_domains]
