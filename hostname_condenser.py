@@ -24,7 +24,7 @@ def get_top_level_domains(file_path):
 
     Returns:
         A list of top level domains.
-        
+
     Raises:
         TLDProcessingError: When top level domains cannot be read from
             file_path.
@@ -39,6 +39,19 @@ def get_top_level_domains(file_path):
         exception_message = "Could not read TLDs from file: " + file_path
         raise TLDProcessingError(exception_message) from exc
 
+def get_default_top_level_domains():
+    """Get the default top level domains from an inbuilt file.
+
+    Returns:
+        A list of top level domains.
+
+    Raises:
+        TLDProcessingError: When top level domains cannot be read from the
+        inbuilt file.
+    """
+    top_level_domains_file_path = "tlds-alpha-by-domain.txt"
+
+    return get_top_level_domains(top_level_domains_file_path)
 
 def condense_hostname(hostname, top_level_domains=None):
     """Takes a hostname and an optional list of top-level domains and generates
@@ -53,7 +66,7 @@ def condense_hostname(hostname, top_level_domains=None):
         A list of valid hostname/TLD combinations.
     """
     if top_level_domains is None:
-        pass # Get the default set of TLDs
+        top_level_domains = get_default_top_level_domains()
 
     matching_top_level_domains = [top_level_domain for top_level_domain in
                                   top_level_domains if
