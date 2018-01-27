@@ -9,6 +9,8 @@ An example is if the hostname was "egg": this could also be represented as
 "e.gg", which would form part of a larger URI.
 """
 
+import argparse
+
 class HostnameCondenserError(Exception):
     """The generic exception used by the hostname_condenser module."""
 
@@ -74,3 +76,32 @@ def condense_hostname(hostname, top_level_domains=None):
 
     return [hostname.replace(tld, "") + "." + tld
             for tld in matching_top_level_domains]
+
+if __name__ == "__main__":
+    PARSER = argparse.ArgumentParser(description="Generate a list of "
+                                                 "condensed hostnames.")
+
+    PARSER.add_argument("hostname",
+                        help="A hostname to condense.")
+    PARSER.add_argument("-tlds",
+                        "--tld_file_path",
+                        default=None,
+                        help="The path to a file containing one top level "
+                             "domain per line and optional comments (lines "
+                             "starting with a \"#\").")
+
+    ARGS = PARSER.parse_args()
+
+    condensed_hostnames = []
+
+    if ARGS.tld_file_path is not None:
+        condensed_hostnames = condense_hostname(ARGS.hostname,
+                                                ARGS.tld_file_path)
+    else:
+        condensed_hostnames = condense_hostname(ARGS.hostname)
+
+    if condensed_hostnames:
+        for condensed_hostname in condensed_hostnames:
+            print(condensed_hostname)
+    else:
+        print("No matches found for hostname \"{0}\"".format(ARGS.hostname))
