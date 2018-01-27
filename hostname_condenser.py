@@ -12,6 +12,33 @@ An example is if the hostname was "egg": this could also be represented as
 class HostnameCondenserError(Exception):
     """The generic exception used by the hostname_condenser module."""
 
+class TLDProcessingError(HostnameCondenserError):
+    """Raise when the list of TLDs cannot be processed."""
+
+def get_top_level_domains(file_path):
+    """Get the top level domains from a specified file.
+
+    Args:
+        file_path (str): The path to a file containing one top level domain per
+            line and optional comments (lines starting with a "#").
+
+    Returns:
+        A list of top level domains.
+        
+    Raises:
+        TLDProcessingError: When top level domains cannot be read from
+            file_path.
+    """
+    try:
+        with open(file_path, "r") as top_level_domains_file_handle:
+            top_level_domains = [line.rstrip().lower() for line in
+                                 top_level_domains_file_handle.readlines()
+                                 if not line.startswith("#")]
+            return top_level_domains
+    except Exception as exc:
+        exception_message = "Could not read TLDs from file: " + file_path
+        raise TLDProcessingError(exception_message) from exc
+
 
 def condense_hostname(hostname, top_level_domains=None):
     """Takes a hostname and an optional list of top-level domains and generates
