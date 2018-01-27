@@ -10,7 +10,15 @@ An example is if the hostname was "egg": this could also be represented as
 """
 
 
-def condense_hostname():
+def condense_hostname(hostname, top_level_domains=None):
     """Takes a hostname and an optional list of top-level domains and generates
-    possible hostname-TLD combinations
+    possible hostname-TLD combinations.
+
+    Args:
+        hostname(str): The hostname to condense.
+        top_level_domains(iterable): The top-level domains to use when
+        condensing the hostname or None to use the inbuilt list.
+
+    Returns:
+        A list of valid hostname/TLD combinations.
     """
