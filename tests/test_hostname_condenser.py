@@ -26,17 +26,18 @@ class TestHostnameCondenser(TestCase):
         self.assertNotEqual(top_level_domains, None)
 
     def test_condense_hostname_returns_expected_results(self):
-        input_output_tuples = [
+        hostname_result_tuples = [
             ("badger", ["badg.er"]),
             ("boat", ["bo.at"]),
             ("pencil", ["penc.il"]),
             ("grandad", ["grand.ad", "gran.dad"]),
         ]
         
-        for input_output_tuple in input_output_tuples:
-            actual_input, expected_output = input_output_tuple
+        for hostname_result_tuple in hostname_result_tuples:
+            actual_hostname, expected_results = hostname_result_tuple
             
             with self.subTest(input=input):
-                actual_output = condense_hostname(actual_input)
+                actual_results = condense_hostname(actual_hostname)
 
-            self.assertEqual(expected_output, actual_output)
+            self.assertEqual(expected_results, actual_results)
+
