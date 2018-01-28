@@ -2,7 +2,8 @@ from unittest import TestCase
 
 from hostname_condenser import (get_top_level_domains,
                                 TLDProcessingError,
-                                get_default_top_level_domains)
+                                get_default_top_level_domains,
+                                condense_hostname)
 
 class TestHostnameCondenser(TestCase):
     def test_get_top_level_domains_returns_expected_results(self):
@@ -23,3 +24,19 @@ class TestHostnameCondenser(TestCase):
         top_level_domains = get_default_top_level_domains()
         
         self.assertNotEqual(top_level_domains, None)
+
+    def test_condense_hostname_returns_expected_results(self):
+        input_output_tuples = [
+            ("badger", ["badg.er"]),
+            ("boat", ["bo.at"]),
+            ("pencil", ["penc.il"]),
+            ("grandad", ["grand.ad", "gran.dad"]),
+        ]
+        
+        for input_output_tuple in input_output_tuples:
+            actual_input, expected_output = input_output_tuple
+            
+            with self.subTest(input=input):
+                actual_output = condense_hostname(actual_input)
+
+            self.assertEqual(expected_output, actual_output)
