@@ -41,3 +41,16 @@ class TestHostnameCondenser(TestCase):
 
             self.assertEqual(expected_results, actual_results)
 
+    def test_condense_hostname_with_custom_tlds_returns_expected_results(self):
+        hostname_result_tuples = [
+            ("water", ("r", "er", "ter"), ["wate.r", "wat.er", "wa.ter"]),
+            ("pilot", ("ot", "ilot"), ["pil.ot", "p.ilot"])
+        ]
+        
+        for hostname_result_tuple in hostname_result_tuples:
+            actual_hostname, top_level_domains, expected_results = hostname_result_tuple
+            
+            with self.subTest(input=input):
+                actual_results = condense_hostname(actual_hostname, top_level_domains)
+
+            self.assertEqual(expected_results, actual_results)
