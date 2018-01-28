@@ -51,7 +51,7 @@ def get_default_top_level_domains():
         TLDProcessingError: When top level domains cannot be read from the
         inbuilt file.
     """
-    top_level_domains_file_path = "tlds-alpha-by-domain.txt"
+    top_level_domains_file_path = r"data\tlds-alpha-by-domain.txt"
 
     return get_top_level_domains(top_level_domains_file_path)
 
