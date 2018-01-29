@@ -56,8 +56,7 @@ def get_default_top_level_domains():
     return get_top_level_domains(top_level_domains_file_path)
 
 def condense_hostname(hostname, top_level_domains=None):
-    """Takes a hostname and an optional list of top-level domains and generates
-    possible hostname-TLD combinations.
+    """Generate valid condensed hostname/TLD pairs from a hostname.
 
     Args:
         hostname(str): The hostname to condense.
