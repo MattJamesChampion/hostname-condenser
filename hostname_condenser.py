@@ -12,7 +12,7 @@ An example is if the hostname was "egg": this could also be represented as
 import argparse
 
 class HostnameCondenserError(Exception):
-    """The generic exception used by the hostname_condenser module."""
+    """The generic base exception used by the hostname_condenser module."""
 
 class TLDProcessingError(HostnameCondenserError):
     """Raise when the list of TLDs cannot be processed."""
