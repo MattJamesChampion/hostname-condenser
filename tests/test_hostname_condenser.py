@@ -36,7 +36,7 @@ class TestHostnameCondenser(TestCase):
         for hostname_result_tuple in hostname_result_tuples:
             actual_hostname, expected_results = hostname_result_tuple
             
-            with self.subTest(input=input):
+            with self.subTest(actual_hostname=actual_hostname):
                 actual_results = condense_hostname(actual_hostname)
 
             self.assertEqual(expected_results, actual_results)
@@ -50,7 +50,7 @@ class TestHostnameCondenser(TestCase):
         for hostname_result_tuple in hostname_result_tuples:
             actual_hostname, top_level_domains, expected_results = hostname_result_tuple
             
-            with self.subTest(input=input):
+            with self.subTest(actual_hostname=actual_hostname):
                 actual_results = condense_hostname(actual_hostname, top_level_domains)
 
             self.assertEqual(expected_results, actual_results)
