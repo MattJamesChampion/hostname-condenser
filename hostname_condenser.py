@@ -69,9 +69,11 @@ def condense_hostname(hostname, top_level_domains=None):
     if top_level_domains is None:
         top_level_domains = get_default_top_level_domains()
 
-    matching_top_level_domains = [top_level_domain for top_level_domain in
+    matching_top_level_domains = [top_level_domain for
+                                  top_level_domain in
                                   top_level_domains if
-                                  hostname[1:].lower() \
+                                  hostname[1:] \
+                                  .lower() \
                                   .endswith(top_level_domain)]
 
     condensed_hostnames = [hostname.replace(tld, "") + "." + tld
