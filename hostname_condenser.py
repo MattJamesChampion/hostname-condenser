@@ -11,11 +11,14 @@ An example is if the hostname was "egg": this could also be represented as
 
 import argparse
 
+
 class HostnameCondenserError(Exception):
     """The generic base exception used by the hostname_condenser module."""
 
+
 class TLDProcessingError(HostnameCondenserError):
     """Raise when the list of TLDs cannot be processed."""
+
 
 def get_top_level_domains(file_path):
     """Get the top level domains from a specified file.
@@ -41,6 +44,7 @@ def get_top_level_domains(file_path):
         exception_message = "Could not read TLDs from file: " + file_path
         raise TLDProcessingError(exception_message) from exc
 
+
 def get_default_top_level_domains():
     """Get the default top level domains from an inbuilt file.
 
@@ -54,6 +58,7 @@ def get_default_top_level_domains():
     top_level_domains_file_path = r"data\tlds-alpha-by-domain.txt"
 
     return get_top_level_domains(top_level_domains_file_path)
+
 
 def condense_hostname(hostname, top_level_domains=None):
     """Generate valid condensed hostname/TLD pairs from a hostname.
