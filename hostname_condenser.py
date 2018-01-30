@@ -96,8 +96,10 @@ if __name__ == "__main__":
     condensed_hostnames = []
 
     if ARGS.tld_file_path is not None:
+        top_level_domains = get_top_level_domains(ARGS.tld_file_path)
+        
         condensed_hostnames = condense_hostname(ARGS.hostname,
-                                                ARGS.tld_file_path)
+                                                top_level_domains)
     else:
         condensed_hostnames = condense_hostname(ARGS.hostname)
 
