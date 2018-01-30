@@ -52,3 +52,16 @@ class TestHostnameCondenser(TestCase):
             with self.subTest(actual_hostname=actual_hostname):
                 actual_results = condense_hostname(actual_hostname, top_level_domains)
                 self.assertEqual(expected_results, actual_results)
+
+    def test_condense_hostname_handles_duplicate_top_level_domains(self):
+        hostname_result_tuples = [
+            ("planner", ("r", "r", "er", "er"), ["plann.er", "planne.r"]),
+            ("building", ("ng", "ing", "ing", "ng"), ["build.ing", "buildi.ng"])
+        ]
+        
+        for hostname_result_tuple in hostname_result_tuples:
+            actual_hostname, top_level_domains, expected_results = hostname_result_tuple
+            
+            with self.subTest(actual_hostname=actual_hostname):
+                actual_results = condense_hostname(actual_hostname, top_level_domains)
+                self.assertEqual(expected_results, actual_results)

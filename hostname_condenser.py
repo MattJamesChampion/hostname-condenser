@@ -76,7 +76,7 @@ def condense_hostname(hostname, top_level_domains=None):
 
     condensed_hostnames = [hostname.replace(tld, "") + "." + tld
                            for tld in matching_top_level_domains]
-    return sorted(condensed_hostnames)
+    return sorted(list(set(condensed_hostnames)))
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="Generate a list of "
