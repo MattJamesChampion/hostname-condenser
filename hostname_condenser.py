@@ -93,8 +93,6 @@ if __name__ == "__main__":
 
     ARGS = PARSER.parse_args()
 
-    condensed_hostnames = []
-
     if ARGS.tld_file_path is not None:
         top_level_domains = get_top_level_domains(ARGS.tld_file_path)
         
