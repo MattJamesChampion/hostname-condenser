@@ -96,15 +96,15 @@ if __name__ == "__main__":
     ARGS = PARSER.parse_args()
 
     if ARGS.tld_file_path is not None:
-        top_level_domains = get_top_level_domains(ARGS.tld_file_path)
-        
-        condensed_hostnames = condense_hostname(ARGS.hostname,
-                                                top_level_domains)
-    else:
-        condensed_hostnames = condense_hostname(ARGS.hostname)
+        TOP_LEVEL_DOMAINS = get_top_level_domains(ARGS.tld_file_path)
 
-    if condensed_hostnames:
-        for condensed_hostname in condensed_hostnames:
+        CONDENSED_HOSTNAMES = condense_hostname(ARGS.hostname,
+                                                TOP_LEVEL_DOMAINS)
+    else:
+        CONDENSED_HOSTNAMES = condense_hostname(ARGS.hostname)
+
+    if CONDENSED_HOSTNAMES:
+        for condensed_hostname in CONDENSED_HOSTNAMES:
             print(condensed_hostname)
     else:
         print("No matches found for hostname \"{0}\"".format(ARGS.hostname))
