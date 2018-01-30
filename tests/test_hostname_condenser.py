@@ -30,7 +30,7 @@ class TestHostnameCondenser(TestCase):
             ("badger", ["badg.er"]),
             ("boat", ["bo.at"]),
             ("pencil", ["penc.il"]),
-            ("grandad", ["grand.ad", "gran.dad"]),
+            ("grandad", ["gran.dad", "grand.ad"]),
         ]
         
         for hostname_result_tuple in hostname_result_tuples:
@@ -43,8 +43,8 @@ class TestHostnameCondenser(TestCase):
 
     def test_condense_hostname_with_custom_tlds_returns_expected_results(self):
         hostname_result_tuples = [
-            ("water", ("r", "er", "ter"), ["wate.r", "wat.er", "wa.ter"]),
-            ("pilot", ("ot", "ilot"), ["pil.ot", "p.ilot"])
+            ("water", ("r", "er", "ter"), ["wa.ter", "wat.er", "wate.r"]),
+            ("pilot", ("ot", "ilot"), ["p.ilot", "pil.ot"])
         ]
         
         for hostname_result_tuple in hostname_result_tuples:
