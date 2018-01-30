@@ -38,8 +38,7 @@ class TestHostnameCondenser(TestCase):
             
             with self.subTest(actual_hostname=actual_hostname):
                 actual_results = condense_hostname(actual_hostname)
-
-            self.assertEqual(expected_results, actual_results)
+                self.assertEqual(expected_results, actual_results)
 
     def test_condense_hostname_with_custom_tlds_returns_expected_results(self):
         hostname_result_tuples = [
@@ -52,5 +51,4 @@ class TestHostnameCondenser(TestCase):
             
             with self.subTest(actual_hostname=actual_hostname):
                 actual_results = condense_hostname(actual_hostname, top_level_domains)
-
-            self.assertEqual(expected_results, actual_results)
+                self.assertEqual(expected_results, actual_results)
