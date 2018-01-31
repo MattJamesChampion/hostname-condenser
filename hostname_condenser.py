@@ -74,16 +74,16 @@ def condense_hostname(hostname, top_level_domains=None):
     if top_level_domains is None:
         top_level_domains = get_default_top_level_domains()
 
-    matching_top_level_domains = [top_level_domain for
+    matching_top_level_domains = {top_level_domain for
                                   top_level_domain in
                                   top_level_domains if
                                   hostname[1:]
                                   .lower()
-                                  .endswith(top_level_domain)]
+                                  .endswith(top_level_domain)}
 
-    condensed_hostnames = [hostname.replace(tld, "") + "." + tld
-                           for tld in matching_top_level_domains]
-    return sorted(list(set(condensed_hostnames)))
+    condensed_hostnames = {hostname.replace(tld, "") + "." + tld
+                           for tld in matching_top_level_domains}
+    return sorted(list(condensed_hostnames))
 
 if __name__ == "__main__":
     PARSER = argparse.ArgumentParser(description="Generate a list of "
